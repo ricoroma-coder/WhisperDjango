@@ -46,6 +46,12 @@
     }
 }
 
+@for $i from 0 through 12 {
+    .flex-#{$i} {
+        flex: $i;
+    }
+}
+
 /* Height/Width */
 @each $value in unset, auto {
     .h-#{$value} {

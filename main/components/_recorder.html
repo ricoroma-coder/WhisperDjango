@@ -1,12 +1,31 @@
 {% load static %}
-<div class="card-panel grey lighten-5 z-depth-1 h-100 w-100 m-0">
+<div class="card-panel grey lighten-5 z-depth-1 h-100 w-auto m-0">
     <div class="h-100 w-100 d-flex justify-content-center align-items-center">
-        <a id="btn-record" class="btn tooltipped waves-effect waves-light p-2 h-auto position-relative" data-position="top" data-tooltip="Grave seu audio">
-            <i class="material-icons rotate-270 font-rem-20" style="line-height:normal;vertical-align:middle;">arrow_drop_down_circle</i>
-        </a>
+        <div class="flex-1 triggers" aria-max="{{ aria_max }}">
+            <a class="btn btn-record tooltipped waves-effect waves-light p-2 h-auto position-relative" data-position="top" data-tooltip="Grave seu audio">
+                <i class="material-icons rotate-270 font-rem-20" style="line-height:normal;vertical-align:middle;">arrow_drop_down_circle</i>
+            </a>
 
-        <a id="btn-stop" class="btn tooltipped waves-effect waves-light h-100 w-100 d-none p-2 h-auto" data-position="top" data-tooltip="Pare a gravação">
-            <i class="material-icons">stop</i>
-        </a>
+            <a class="btn btn-stop tooltipped waves-effect waves-light p-2 h-auto position-relative d-none" data-position="top" data-tooltip="Pare a gravação">
+                <i class="material-icons font-rem-20" style="line-height:normal;vertical-align:middle;">stop</i>
+            </a>
+        </div>
+
+
+        <div class="flex-0 options">
+            <div class="progress">
+                <div class="determinate"></div>
+            </div>
+
+            <div class="d-none justify-content-between align-items-center w-100 chronometers">
+                <div class="chronometer-current">
+                    <span class="black-text">00:00</span>
+                </div>
+
+                <div class="chronometer-max">
+                    <span class="black-text">{{ max_time }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
