@@ -6,6 +6,7 @@
     <title>Página inicial</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/_variables.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/_recorder.css' %}">
 
     <script type="module" src="{% static 'js/components/_recorder.js' %}"></script>
 {% endblock %}
@@ -33,7 +34,7 @@
     </div>
 
     <div id="response-voice" class="w-50 w-md-75 w-sm-100 h-25 d-flex justify-content-center align-items-center mt-10 d-none">
-        {% render_recorder '180' %}
+        {% render_recorder '180' 'opened recorded' %}
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,26 @@
+.card-panel {
+  width: auto;
+}
+
+.card-panel.opened {
+  width: 100%;
+}
+
+.card-panel .options {
+  flex: 0;
+}
+
+.card-panel.opened .options {
+  flex: 2;
+  padding: 0 .5rem;
+}
+
+.card-panel .chronometers {
+  display: none;
+}
+
+.card-panel.opened .chronometers {
+  display: flex;
+}
+
+/*# sourceMappingURL=../../css/components/_recorder.css.map */

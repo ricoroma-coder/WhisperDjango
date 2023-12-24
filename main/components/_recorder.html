@@ -1,5 +1,6 @@
 {% load static %}
-<div class="card-panel grey lighten-5 z-depth-1 h-100 w-auto m-0">
+<div class="card-panel grey lighten-5 z-depth-1 h-100 m-0 {{ class }}">
+    <audio class="d-none" controls></audio>
     <div class="h-100 w-100 d-flex justify-content-center align-items-center">
         <div class="flex-1 triggers" aria-max="{{ aria_max }}">
             <a class="btn btn-record tooltipped waves-effect waves-light p-2 h-auto position-relative" data-position="top" data-tooltip="Grave seu audio">
@@ -12,12 +13,12 @@
         </div>
 
 
-        <div class="flex-0 options">
+        <div class="options">
             <div class="progress">
                 <div class="determinate"></div>
             </div>
 
-            <div class="d-none justify-content-between align-items-center w-100 chronometers">
+            <div class="justify-content-between align-items-center w-100 chronometers">
                 <div class="chronometer-current">
                     <span class="black-text">00:00</span>
                 </div>
