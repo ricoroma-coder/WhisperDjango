@@ -15,7 +15,7 @@
 <div class="container center-align h-100 d-flex flex-column justify-content-center align-items-center">
     {% csrf_token %}
     <div id="request-voice" class="w-50 w-md-75 w-sm-100 h-25 d-flex justify-content-center align-items-center">
-        {% render_recorder '180' %}
+        {% render_recorder '60' %}
     </div>
 
     <div id="spinner" class="w-100 h-auto mt-10 d-none">
@@ -35,7 +35,7 @@
     </div>
 
     <div id="response-voice" class="w-50 w-md-75 w-sm-100 h-25 d-flex justify-content-center align-items-center mt-10 d-none">
-        {% render_recorder '180' 'opened recorded' %}
+        {% render_recorder '60' 'opened recorded' %}
     </div>
 </div>
 {% endblock %}

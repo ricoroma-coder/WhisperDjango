@@ -17,4 +17,11 @@ export const time_to_decimal = function (timeString) {
             perc = (acc * 100) / max
 
         return { minutes, seconds, acc, perc }
+    },
+    time_to_text = function (seconds) {
+        const minutes = Math.floor(seconds / 60),
+            remain_seconds = seconds % 60,
+            format = (value) => (value < 10 ? `0${value}` : value)
+
+        return `${format(minutes)}:${format(remain_seconds)}`
     }
