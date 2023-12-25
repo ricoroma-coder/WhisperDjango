@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.home),
-    path('whisper/', views.whisper)
+    path('whisper/', views.whisper_api)
 ]

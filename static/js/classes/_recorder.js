@@ -52,18 +52,14 @@ export default class Recorder {
             acc = info.acc,
             perc = info.perc
 
-        minutes = info.minutes
-        seconds = info.seconds
+        seconds = info.minutes * 60 + info.seconds
 
-        current = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0')
+        current = time_to_text(seconds)
 
         if (run !== undefined)
             run()
 
-        if (this.media_recorder && this.media_recorder.state !== 'recording')
-            this.media_recorder.start()
-
-        chronometer_current.html(acc == max ? time_to_text(max) : current)
+        chronometer_current.html(current)
         $(options.find('.progress .determinate')).css('width', `${perc}%`)
 
         if (acc == max)
