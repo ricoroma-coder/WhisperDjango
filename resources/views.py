@@ -11,6 +11,8 @@ from decouple import config
 from gtts import gTTS
 from pydub import AudioSegment
 
+from resources.enums import Language
+
 
 def home(request):
     return render(request, 'home.html')
@@ -33,10 +35,18 @@ def whisper_to_me(request):
 
         remove_temp_file(temp_file_path)
         remove_temp_file(speech_file_path)
+
+        lang = object_transcribe['language'].upper()
+        if lang in Language.__members__:
+            lang = Language[lang].value
+        else:
+            lang = f'Not supported language ({lang})'
+
         return JsonResponse({
             'success': True,
             'request': {
-                'transcribe': object_transcribe,
+                'transcribe': object_transcribe['text'],
+                'language': lang
             },
             'response': {
                 'gpt_response': gpt_response,

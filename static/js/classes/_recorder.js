@@ -138,8 +138,8 @@ export default class Recorder {
         let response_recorder = $('.response-voice:not(.done)'),
             request_transcriptions = $(this.element.find('.transcriptions')),
             response_transcriptions = $(response_recorder.find('.transcriptions')),
-            language = data.request.transcribe.language,
-            request_text = data.request.transcribe.text,
+            language = data.request.language,
+            request_text = data.request.transcribe,
             response_text = data.response.gpt_response,
             response_duration = Math.round(data.response.audio_duration) + 1
 
