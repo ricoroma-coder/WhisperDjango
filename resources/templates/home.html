@@ -13,6 +13,7 @@
 
 {% block body %}
 <div class="container center-align h-100 d-flex flex-column justify-content-center align-items-center">
+    {% csrf_token %}
     <div id="request-voice" class="w-50 w-md-75 w-sm-100 h-25 d-flex justify-content-center align-items-center">
         {% render_recorder '180' %}
     </div>

@@ -18,4 +18,3 @@ export const time_to_decimal = function (timeString) {
 
         return { minutes, seconds, acc, perc }
     }
-

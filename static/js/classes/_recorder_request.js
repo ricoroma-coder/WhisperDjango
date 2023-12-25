@@ -67,11 +67,6 @@ export default class RecorderRequest extends Recorder {
         $(options.find('.progress .determinate')).css('width', '0%')
 
         this.stop_recording()
-
-        $('#spinner').addClass('d-none')
-        $('#response-voice').removeClass('d-none')
-        this.element.addClass('recorded')
-        $(triggers.find('.btn-record')).removeAttr('disabled')
     }
 
     stop() {
@@ -81,9 +76,9 @@ export default class RecorderRequest extends Recorder {
     stop_recording() {
         if (this.media_recorder && this.media_recorder.state === 'recording') {
             clearInterval(this.interval)
-            this.media_recorder.stop()
             if (this.stream)
                 this.stream.getTracks().forEach(track => track.stop())
+            this.media_recorder.stop()
         }
     }
 }

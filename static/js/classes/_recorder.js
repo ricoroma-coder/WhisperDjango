@@ -26,7 +26,7 @@ export default class Recorder {
     }
 
     set_media_recorder() {
-        this.media_recorder = new MediaRecorder(this.stream);
+        this.media_recorder = new MediaRecorder(this.stream)
 
         this.media_recorder.ondataavailable = (event) => {
             if (event.data.size > 0)
@@ -36,6 +36,29 @@ export default class Recorder {
         this.media_recorder.onstop = () => {
             this.blob = new Blob(this.chunks, { type: 'audio/mp3;' })
             $(this.element.find('audio'))[0].src = window.URL.createObjectURL(this.blob)
+
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                fetch('whisper/', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        data: reader.result.split(',')[1]
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val()
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Upload bem-sucedido:', data)
+                })
+                .catch(error => {
+                    console.error('Erro no upload:', error)
+                })
+            }
+
+            reader.readAsDataURL(this.blob)
         }
     }
 }
