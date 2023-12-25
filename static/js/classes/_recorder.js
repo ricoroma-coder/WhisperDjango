@@ -76,7 +76,7 @@ export default class Recorder {
 
         this.max_seconds = decimal_to_seconds(time_to_decimal(chronometer_current.text()))
         if (!this.element.hasClass('recorded')) {
-            $('#spinner').removeClass('d-none')
+            $('.spinner:not(.done)').removeClass('d-none')
             $(options.find('.chronometer-max span')).html(chronometer_current.text())
             triggers.attr('aria-max', this.max_seconds)
             $(triggers.find('.btn-record')).attr('disabled', 'true')
@@ -120,20 +120,61 @@ export default class Recorder {
                     }
                 })
                 .then(response => response.json())
-                .then(data => {
+                .then((data) => {
                     console.log('Upload bem-sucedido:', data)
-
-                    $('#spinner').addClass('d-none')
-                    $('#response-voice').removeClass('d-none')
-                    this.element.addClass('recorded')
-                    $(this.element.find('.btn-record')).removeAttr('disabled')
+                    this.complete_cards(data)
                 })
                 .catch(error => {
-                    console.error('Erro no upload:', error)
+                    console.log(error)
+                    alert('Erro no upload: ' + error.message)
                 })
             }
 
             reader.readAsDataURL(this.blob)
         }
+    }
+
+    complete_cards(data) {
+        let response_recorder = $('.response-voice:not(.done)'),
+            request_transcriptions = $(this.element.find('.transcriptions')),
+            response_transcriptions = $(response_recorder.find('.transcriptions')),
+            language = data.request.transcribe.language,
+            request_text = data.request.transcribe.text,
+            response_text = data.response.gpt_response,
+            response_duration = Math.round(data.response.audio_duration) + 1
+
+        // request
+        $('.spinner:not(.done)').addClass('d-none done')
+        this.element.addClass('recorded')
+        $(this.element.find('.btn-record')).removeAttr('disabled')
+
+        request_transcriptions
+            .addClass('show d-flex')
+            .removeClass('d-none')
+
+        $(request_transcriptions.find('.transcription'))
+            .append(`<p><strong>Idioma:</strong> ${language}</p><p>${request_text}</p>`)
+
+        // response
+        response_recorder.removeClass('d-none').addClass('done')
+        response_transcriptions
+            .addClass('show d-flex')
+            .removeClass('d-none')
+
+        $(response_transcriptions.find('.transcription'))
+            .append(`<p><strong>Idioma:</strong> ${language}</p><p>${response_text}</p>`)
+
+        $(response_recorder.find('.chronometer-max span')).html(time_to_text(response_duration))
+        $(response_recorder.find('.triggers')).attr('aria-max', response_duration)
+
+        const byte_chars = atob(data.response.audio_base64),
+            byte_numbers = new Array(byte_chars.length)
+
+        for (let i = 0; i < byte_chars.length; i++) {
+            byte_numbers[i] = byte_chars.charCodeAt(i)
+        }
+
+        const blob = new Blob([new Uint8Array(byte_numbers)], { type: 'audio/mp3' })
+        $(response_recorder.find('audio'))[0].src = window.URL.createObjectURL(blob)
     }
 }

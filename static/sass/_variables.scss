@@ -299,6 +299,14 @@
     }
 }
 
+/* Overflow */
+$overflow: hidden, auto, visible, clip, scroll;
+@each $value in $overflow {
+  .overflow-#{$value} {
+    overflow: $value !important;
+  }
+}
+
 /* Position */
 $position: relative, absolute, fixed;
 @each $value in $position {

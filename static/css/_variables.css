@@ -3332,6 +3332,27 @@
   font-size: 20px !important;
 }
 
+/* Overflow */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.overflow-visible {
+  overflow: visible !important;
+}
+
+.overflow-clip {
+  overflow: clip !important;
+}
+
+.overflow-scroll {
+  overflow: scroll !important;
+}
+
 /* Position */
 .position-relative {
   position: relative !important;
@@ -3365,5 +3386,3 @@
 .rotate-360 {
   transform: rotate(360deg);
 }
-
-/*# sourceMappingURL=../css/_variables.css.map */

@@ -1,14 +1,15 @@
 {% load static %}
-<div class="card-panel grey lighten-5 z-depth-1 h-100 m-0 {{ class }}">
+<div class="card-panel grey lighten-5 z-depth-1 h-auto m-0 {{ class }}">
     <audio class="d-none" controls></audio>
+
     <div class="h-100 w-100 d-flex justify-content-center align-items-center">
         <div class="flex-1 triggers" aria-max="{{ aria_max }}">
             <a class="btn btn-record tooltipped waves-effect waves-light p-2 h-auto position-relative" data-position="top" data-tooltip="Grave seu audio">
-                <i class="material-icons rotate-270 font-rem-20" style="line-height:normal;vertical-align:middle;">arrow_drop_down_circle</i>
+                <i class="material-icons rotate-270 font-rem-20">arrow_drop_down_circle</i>
             </a>
 
             <a class="btn btn-stop tooltipped waves-effect waves-light p-2 h-auto position-relative d-none" data-position="top" data-tooltip="Pare a gravação">
-                <i class="material-icons font-rem-20" style="line-height:normal;vertical-align:middle;">stop</i>
+                <i class="material-icons font-rem-20">stop</i>
             </a>
         </div>
 
@@ -28,5 +29,13 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="d-none flex-column justify-content-start align-items-center transcriptions overflow-hidden">
+        <div class="w-100 right-align collapse-transcription">
+            <i class="material-icons">arrow_drop_down</i>
+        </div>
+
+        <div class="w-100 transcription left-align"></div>
     </div>
 </div>

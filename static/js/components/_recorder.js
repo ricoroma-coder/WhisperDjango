@@ -21,3 +21,13 @@ $('.btn-record').on('click', function () {
 $('.btn-stop').on('click', function () {
     recorder.stop()
 })
+
+$('.collapse-transcription i').on('click', function () {
+    const element = $(this),
+        transcriptions = $(element.parents('.transcriptions'))
+
+    if (transcriptions.hasClass('opened'))
+        transcriptions.removeClass('opened')
+    else
+        transcriptions.addClass('opened')
+})

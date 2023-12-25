@@ -1,3 +1,10 @@
+.card-panel,
+.card-panel.opened {
+  transition: width .1s ease-in;
+  -moz-transition: width .1s ease-in;
+  -webkit-transition: width .1s ease-in;
+}
+
 .card-panel {
   width: auto;
 }
@@ -23,4 +30,42 @@
   display: flex;
 }
 
-/*# sourceMappingURL=../../css/components/_recorder.css.map */
+.material-icons {
+  line-height: normal;
+  vertical-align: middle;
+}
+
+.card-panel.opened .transcriptions,
+.card-panel.opened .transcriptions.opened,
+.card-panel.opened .transcriptions.show .transcription,
+.card-panel.opened .transcriptions.show.opened .transcription {
+  transition: height .1s ease-in;
+  -moz-transition: height .1s ease-in;
+  -webkit-transition: height .1s ease-in;
+}
+
+.card-panel.opened .transcriptions,
+.card-panel.opened .transcriptions.show .transcription {
+  height: 0;
+}
+
+.card-panel.opened .transcriptions.show,
+.card-panel.opened .transcriptions.show.opened .transcription {
+  height: auto;
+}
+
+.card-panel.opened .transcriptions.show .collapse-transcription i,
+.card-panel.opened .transcriptions.show.opened .collapse-transcription i {
+  transition: transform 1s ease-in;
+  -moz-transition: transform 1s ease-in;
+  -webkit-transition: transform 1s ease-in;
+  cursor: pointer;
+}
+
+.card-panel.opened .transcriptions.show .collapse-transcription i {
+  transform: rotate(0deg);
+}
+
+.card-panel.opened .transcriptions.show.opened .collapse-transcription i {
+  transform: rotate(180deg);
+}
