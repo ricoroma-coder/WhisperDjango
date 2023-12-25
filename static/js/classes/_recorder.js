@@ -15,9 +15,9 @@ export default class Recorder {
         this.chunks = []
     }
 
-    start() {
+    start(run = undefined) {
         this.prepare_card()
-        this.interval = setInterval(() => { this.chronometer_run_progress() }, 1000)
+        this.interval = setInterval(() => { this.set_interval(run) }, 1000)
     }
 
     stop() {

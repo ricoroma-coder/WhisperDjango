@@ -6,13 +6,10 @@ export default class RecorderRequest extends Recorder {
         .then ((stream) => {
             this.stream = stream
             this.set_media_recorder()
-            this.prepare_card()
-            this.interval = setInterval(() => {
-                this.set_interval(() => {
-                    if (this.media_recorder && this.media_recorder.state !== 'recording')
-                        this.media_recorder.start()
-                })
-            }, 1000)
+            super.start(() => {
+                if (this.media_recorder && this.media_recorder.state !== 'recording')
+                    this.media_recorder.start()
+            })
         })
         .catch((err) => {
             console.log('Erro ao acessar o microfone:', err)
